@@ -1,0 +1,742 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #FFF7EE;
+    padding: 0px;
+    margin: 0px;
+    color: #121212;
+}
+
+p {
+    padding: 0px;
+    margin: 0px;
+}
+
+.button {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+    background: #409ffe;
+    background-image: -o-linear-gradient(top, #80c0ff 0, #017ffe 100%);
+    background-image: -moz-linear-gradient(top, #80c0ff 0, #017ffe 100%);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#80c0ff), to(#017ffe));
+    background-image: -webkit-linear-gradient(top, #80c0ff 0, #017ffe 100%);
+    background-image: -ms-linear-gradient(top, #80c0ff 0, #017fte 100%);
+    background-image: linear-gradient(top, #80c0ff 0, #017fte 100%);
+    color: white;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.button:active {
+    background-color: #007aff;
+    transform: translate(-1px, 1px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.mirror {
+    transform: scaleX(-1);
+}
+
+#report-btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 1000;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    fill: #8B0000;
+}
+
+#report-btn[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+    fill: #fff;
+}
+
+#switch-camera-btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 1000;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    fill: #fff;
+}
+
+#switch-camera-btn[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+    fill: #fff;
+}
+
+#main {
+    height: 100vh;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 8% auto 9%;
+    grid-template-columns: 30% auto;
+    grid-template-areas: 'top top' 'vid msg' 'vid inp';
+}
+
+#top-bar {
+    grid-area: top;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 30px;
+    align-items: center;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#logo img {
+    vertical-align: middle;
+}
+
+#logo h1 {
+    cursor: pointer;
+    text-align: left;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin: 0px;
+}
+
+#top-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#peopleOnline p {
+    color: #9cf;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0;
+    margin: 10px;
+    margin-right: 20px;
+}
+
+#feedback-btn {
+    margin: 0;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+#videos {
+    grid-area: vid;
+    margin: 10px;
+    margin-right: 0;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    overflow: hidden;
+}
+
+#self {
+    overflow: hidden;
+    margin-top: 5px;
+    position: relative;
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    -moz-border-radius-bottomleft: .5em;
+    -moz-border-radius-bottomright: .5em;
+    -webkit-border-bottom-left-radius: 0.5em;
+    -webkit-border-bottom-right-radius: 0.5em;
+}
+
+#local-settings-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+}
+
+#self:hover #local-settings-overlay {
+    opacity: 1;
+}
+
+#local-webcam-label,
+#local-microphone-label {
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    margin: 2px 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#webcam-select,
+#microphone-select {
+    margin: 5px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+    max-width: 80%;
+    overflow-y: auto;
+    max-height: 100px;
+}
+
+#webcam-select option,
+#microphone-select option {
+    background-color: white;
+    color: black;
+    padding: 5px;
+}
+
+#webcam-select::-webkit-scrollbar,
+#microphone-select::-webkit-scrollbar {
+    width: 8px;
+}
+
+#webcam-select::-webkit-scrollbar-track,
+#microphone-select::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#webcam-select::-webkit-scrollbar-thumb,
+#microphone-select::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+#webcam-select::-webkit-scrollbar-thumb:hover,
+#microphone-select::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#local-settings-overlay {
+    z-index: 5;
+}
+
+#switch-camera-btn {
+    z-index: 10;
+}
+
+#peer {
+    margin-bottom: 5px;
+    overflow: hidden;
+    position: relative;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    -moz-border-radius-topleft: .5em;
+    -moz-border-radius-topright: .5em;
+    -webkit-border-top-left-radius: 0.5em;
+    -webkit-border-top-right-radius: 0.5em;
+}
+
+#peer img {
+    position: absolute;
+    width: 25%;
+    left: 10px;
+    bottom: 10px;
+    z-index: 10;
+    opacity: 0.7;
+}
+
+#webcam-label-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#webcam-label,
+#peer-microphone-label {
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    margin: 2px 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#peer:hover #webcam-label-container {
+    opacity: 1;
+}
+
+#webcam-label-container {
+    z-index: 5;
+}
+
+#report-btn,
+#mute-btn {
+    z-index: 1000;
+}
+
+/* For mobile devices */
+
+@media (hover: none) {
+    #peer:hover #webcam-label-container {
+        opacity: 0;
+    }
+    #webcam-label-container.show-overlay {
+        opacity: 1;
+    }
+}
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IiIgcj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC44Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g);
+    background-image: -moz-radial-gradient( center, ellipse, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.8) 100%);
+    background-image: -webkit-radial-gradient( center, ellipse, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.8) 100%);
+    background-image: radial-gradient( ellipse at center, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.8) 100%);
+    background-size: 100%;
+}
+
+#peer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+#peer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, #2a2a2a 1%, transparent 1%), radial-gradient(circle at 75% 75%, #2a2a2a 1%, transparent 1%);
+    background-size: 4px 4px;
+    opacity: 0.3;
+}
+
+#peer-video-loader {
+    position: relative;
+    z-index: 2;
+}
+
+#video-peer {
+    position: relative;
+    z-index: 1;
+}
+
+#peer-video-loader {
+    position: absolute;
+    aspect-ratio: 1;
+    width: 25%;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 6px solid #fff;
+    border-right: 6px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 0.7s linear infinite;
+}
+
+#message-area {
+    background: #fff;
+    grid-area: msg;
+    margin: 8px;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    -moz-border-radius-topleft: .5em;
+    -moz-border-radius-topright: .5em;
+    -webkit-border-top-left-radius: 0.5em;
+    -webkit-border-top-right-radius: 0.5em;
+}
+
+.message-status {
+    margin: 8px;
+    margin-bottom: 16px;
+    font-weight: bold;
+    color: grey;
+}
+
+.message {
+    margin: 3px;
+}
+
+.message .you {
+    color: #4285f4;
+    font-weight: bold;
+}
+
+.message .strange {
+    color: red;
+    font-weight: bold;
+}
+
+#input-area {
+    grid-area: inp;
+    display: flex;
+    padding: 0;
+    padding-bottom: 6px;
+    min-width: 0;
+}
+
+#skip-btn {
+    margin: 0 8px;
+    padding: 5px 40px;
+    font-size: 20px;
+    min-width: 0;
+    background: #409ffe;
+    background-image: -o-linear-gradient(top, #80c0ff 0, #017fte 100%);
+    background-image: -moz-linear-gradient(top, #80c0ff 0, #017fte 100%);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#80c0ff), to(#017fte));
+    background-image: -webkit-linear-gradient(top, #80c0ff 0, #017fte 100%);
+    background-image: -ms-linear-gradient(top, #80c0ff 0, #017fte 100%);
+    background-image: linear-gradient(top, #80c0ff 0, #017fte 100%);
+    color: white;
+    border-bottom-left-radius: 10px;
+}
+
+#skip-btn span {
+    display: block;
+    font-size: 10px;
+    min-width: 0;
+}
+
+.rad {
+    border-radius: 5px;
+}
+
+#skip-btn:disabled {
+    background-color: #cccccc !important;
+    color: lightgrey !important;
+}
+
+#message-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    min-width: 0;
+}
+
+#button-container span {
+    margin-top: 16px;
+}
+
+#send-btn {
+    margin: 0 8px;
+    padding: 5px 40px;
+    font-size: 20px;
+    background: #409ffe;
+    background-image: -o-linear-gradient(top, #80c0ff 0, #017fte 100%);
+    background-image: -moz-linear-gradient(top, #80c0ff 0, #017fte 100%);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#80c0ff), to(#017fte));
+    background-image: -webkit-linear-gradient(top, #80c0ff 0, #017fte 100%);
+    background-image: -ms-linear-gradient(top, #80c0ff 0, #017fte 100%);
+    background-image: linear-gradient(top, #80c0ff 0, #017fte 100%);
+    color: white;
+    border-bottom-right-radius: 10px;
+}
+
+#send-btn span {
+    display: block;
+    font-size: 12px;
+}
+
+#send-btn:disabled {
+    background-color: #cccccc !important;
+    color: lightgrey !important;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 3% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#feedbackText {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+#submit-btn {
+    padding: 10px 20px;
+}
+
+#mute-btn {
+    position: absolute;
+    top: 5px;
+    left: 2px;
+    z-index: 1000;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Initial SVG color for unmuted state */
+
+.mute-icon,
+.mute-icon path {
+    fill: #ffffff;
+}
+
+/* SVG color for muted state */
+
+.muted path {
+    fill: red;
+}
+
+/* Media queries for responsiveness */
+
+@media (max-width: 1000px) {
+    .modal-content {
+        width: 50%;
+    }
+}
+
+@media (max-width: 1366px) {
+    #main {
+        grid-template-columns: 35% auto;
+    }
+    .message-status {
+        font-size: 18px;
+    }
+    .message {
+        font-size: 16px;
+    }
+    #input-area {
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    #skip-btn,
+    #send-btn {
+        padding: 5px 30px;
+        font-size: 16px;
+    }
+    #message-input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        margin-right: 8px;
+    }
+}
+
+@media (max-width: 800px) {
+    #main {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto 1fr auto;
+        height: 100vh;
+    }
+    #top-bar {
+        padding: 10px;
+        align-items: center;
+    }
+    #logo h1 {
+        font-size: 2rem;
+        font-weight: 500;
+        margin: 0px;
+    }
+    #peopleOnline p {
+        font-size: 16px;
+    }
+    #feedback-btn {
+        margin: 0;
+        padding: 8px;
+        background-color: #4caf50;
+    }
+    #videos {
+        margin: 10px;
+        grid-template-rows: auto;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 0;
+        height: 40vh;
+    }
+    #self,
+    #peer {
+        margin: 0 5px;
+        overflow: hidden;
+    }
+    #message-area {
+        max-height: calc(100vh - 40vh - 60px - 50px);
+        /* Adjust based on your header and input area heights */
+        overflow-y: auto;
+    }
+    #input-area {
+        box-sizing: border-box;
+        overflow: hidden;
+        padding-bottom: 10px;
+    }
+    #skip-btn {
+        padding: 5px 25px;
+        font-size: 14px;
+    }
+    #send-btn {
+        display: none;
+    }
+    #message-input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        margin-right: 8px;
+    }
+    .modal-content {
+        width: 70%;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    #logo h1 {
+        font-size: 1.5rem;
+    }
+    #peopleOnline p {
+        font-size: 14px;
+    }
+    .message,
+    .message-status {
+        font-size: 14px;
+    }
+    #skip-btn,
+    #send-btn {
+        padding: 8px 13px;
+        font-size: 12px;
+    }
+    #message-input {
+        font-size: 14px;
+        padding: 8px;
+    }
+    #mute-btn,
+    #report-btn,
+    #switch-camera-btn {
+        padding: 10px;
+    }
+    #mute-btn svg,
+    #report-btn svg,
+    #switch-camera-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+    .modal-content {
+        width: 90%;
+        margin: 10% auto;
+        padding: 15px;
+    }
+    #feedbackText {
+        font-size: 14px;
+    }
+    #submit-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 550px) {
+    #videos {
+        display: flex;
+        flex-direction: column;
+        height: 40vh;
+    }
+    #peer {
+        flex: 1;
+        margin-bottom: 5px;
+    }
+    #self {
+        position: absolute;
+        width: 30%;
+        height: 30%;
+        bottom: 10px;
+        right: 10px;
+        z-index: 10;
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    #top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 5px 10px;
+    }
+    #top-right {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 5px;
+    }
+}

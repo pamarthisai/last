@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"></script>
+    <script defer src="/assets/js/bundle.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <title>Omegly</title>
+</head>
+
+<body>
+    <div id="video-container">
+        <div id="video-grid">
+            <div id="videoLocal">
+                <video muted id="local-video" autoplay playsinline style="pointer-events: none;"></video>
+            </div>
+            <div id="videoRemote" data-swipe-threshold="50">
+                <h6 id="vidoff"></h6>
+                <video style="background-color: #555555;" id="remote-video" autoplay playsinline style="pointer-events: none;"></video>
+                <canvas id="canvas" class="noise"></canvas>
+                <div id="standby">
+                    <img id="logo" src="/assets/img/omegle-logo.svg.png" alt="Omegly Logo">
+                    <div id="online-count">
+                        <div style="color:chartreuse;padding-right: 5px;">◉</div>
+                        <h3>Users online: 0</h3>
+                    </div>
+                    <div id="swipeStart">
+                        Swipe right to stop <br> swipe left to start or next
+                    </div>
+                </div>
+                <div id="liveStream" style="display: none;">
+                    <img id="watermark" src="/assets/img/omegle-logo.svg.png" alt="Omegly Logo">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="chat-container">
+        <div id="chat-box">
+            <div id="msg-container">
+                <ul id="messages"></ul>
+            </div>
+            <form id="form" action>
+                <input type="text" id="input" placeholder="Message" />
+            </form>
+        </div>
+        <div id="buttons-box">
+            <button id="stop" onclick="stopStream()">Stop</button>
+            <button id="start" onclick="joinRoom()">Start</button>
+        </div>
+    </div>
+    <div id="bottom-bar">
+        <div>
+            Omegly 2024
+        </div>
+    </div>
+    <script src="/assets/js/index.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+/* main container styles */
+#main {
+    display: flex;
+    flex-direction: column;
+}
+
+#top-bar {
+    /* Uncomment and adjust if needed */
+    /* height: 8%; */
+    /* box-sizing: border-box; */
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Aligns children in the center of the flex container horizontally */
+    justify-content: flex-start; /* Aligns children at the start of the flex container vertically */
+    width: 60vw; /* Sets the base width and eliminates the need for min-width and max-width when they are the same */
+    margin: 1em auto; /* Centers the flex container in the viewport and adds margin on the top and bottom */
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    padding: 0.5em 0.5em 1em; /* Shorthand for padding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background: white;
+    border-radius: 0.5em; /* No need for vendor prefixes as border-radius is well supported */
+}
+
+#social-message {
+    display: flex;
+    padding: 40px;
+    align-items: flex-start;
+}
+
+#message-content {
+    width: 100%;
+    padding-right: 20px;
+    font-size: 16px;
+}
+
+#message-image {
+    width: 50px;
+    flex-grow: 1;
+    display: block;
+    object-fit: cover;
+}
+
+#instructions {
+    height: 12vh;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#instructions p {
+    background: #bfdeff;
+    padding: 20px 30px;
+    border-radius: 20px;
+    margin-top: 50px;
+}
+
+/* Default styles for all devices */
+.monitoring-message {
+    background-color: #bfdeff; /* Light grey background */
+    color: #333; /* Dark text for readability */
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Centered text */
+    font-size: 16px; /* Default text size */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styles for mobile devices */
+@media (max-width: 600px) {
+    .monitoring-message {
+        font-size: 14px; /* Smaller text for mobile screens */
+        padding: 8px; /* Slightly less padding on mobile */
+    }
+}
+
+#options-container {
+    display: flex;
+    height: 25%;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#interest-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#interest-container p {
+    font-size: 20px;
+}
+
+#interest-container input {
+    font-size: 14px;
+    padding: 10px;
+    width: 25vw;
+    background: white;
+    cursor: text;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    margin-top: 6px;
+    height: 35px;
+}
+
+input:focus {
+    outline: none;
+}
+
+#tag-container {
+    margin-top: 1vh;
+    max-width: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+#tag {
+    background: lightcyan;
+    border: 1px solid lightblue;
+    border-radius: 5px;
+    padding: 1px;
+    margin: 2px 5px;
+}
+
+#tag p {
+    margin: 0;
+    padding: 2px 3px;
+    font-size: 14px;
+}
+
+#chat-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+    padding: 10px;
+}
+
+#button-container p {
+    margin: auto 10px;
+}
+
+#button-container button {
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background-color: #ffa500; /* Orange button */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#button-container button:hover {
+    background-color: #28a745; /* Green button on hover */
+    transform: scale(1.05); /* Slight scale effect for hover */
+}
+
+#button-container button:focus {
+    outline: none;
+}
+
+/* Footer Styles */
+#footer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 2px;
+    font-size: 12px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    color: #6c757d;
+}
+
+#footer a,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+#footer a {
+    margin-left: 0.5rem;
+}
+
+#disclaimer {
+    padding: 10px 20px;
+    color: rgb(29, 156, 211);
+    font-size: 13px;
+}
